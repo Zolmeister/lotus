@@ -37,7 +37,7 @@ const (
 	// Extracted constants from the code.
 	// FIXME: Should be reviewed and confirmed.
 	SuccessPeerTagValue = 25
-	WriteReqDeadline    = 5 * time.Second
+	WriteReqDeadline    = 25 * time.Second
 	ReadResDeadline     = WriteReqDeadline
 	ReadResMinSpeed     = 50 << 10
 	ShufflePeersPrefix  = 16
