@@ -55,7 +55,7 @@ func TestCanLock(t *testing.T) {
 }
 
 func TestIndexLocksSeq(t *testing.T) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second * 10)
 
 	ilk := &indexLocks{
 		locks: map[abi.SectorID]*sectorLock{},
@@ -64,23 +64,23 @@ func TestIndexLocksSeq(t *testing.T) {
 	require.NoError(t, ilk.StorageLock(ctx, aSector, FTNone, FTUnsealed))
 	cancel()
 
-	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second * 10)
 	require.NoError(t, ilk.StorageLock(ctx, aSector, FTNone, FTUnsealed))
 	cancel()
 
-	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second * 10)
 	require.NoError(t, ilk.StorageLock(ctx, aSector, FTNone, FTUnsealed))
 	cancel()
 
-	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second * 10)
 	require.NoError(t, ilk.StorageLock(ctx, aSector, FTUnsealed, FTNone))
 	cancel()
 
-	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second * 10)
 	require.NoError(t, ilk.StorageLock(ctx, aSector, FTNone, FTUnsealed))
 	cancel()
 
-	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second * 10)
 	require.NoError(t, ilk.StorageLock(ctx, aSector, FTNone, FTUnsealed))
 	cancel()
 }
@@ -113,14 +113,14 @@ func TestIndexLocksBlockOn(t *testing.T) {
 			select {
 			case <-sch:
 				t.Fatal("that shouldn't happen")
-			case <-time.After(40 * time.Millisecond):
+			case <-time.After(4000 * time.Millisecond):
 			}
 
 			cancel()
 
 			select {
 			case <-sch:
-			case <-time.After(time.Second):
+			case <-time.After(time.Second * 10):
 				t.Fatal("timed out")
 			}
 		}
@@ -157,14 +157,14 @@ func TestIndexLocksBlockWonR(t *testing.T) {
 	select {
 	case <-sch:
 		t.Fatal("that shouldn't happen")
-	case <-time.After(40 * time.Millisecond):
+	case <-time.After(4000 * time.Millisecond):
 	}
 
 	cancel()
 
 	select {
 	case <-sch:
-	case <-time.After(time.Second):
+	case <-time.After(10 * time.Second):
 		t.Fatal("timed out")
 	}
 }

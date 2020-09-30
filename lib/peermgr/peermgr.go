@@ -173,7 +173,7 @@ func (pmgr *PeerMgr) expandPeers() {
 	}
 
 	go func() {
-		ctx, cancel := context.WithTimeout(context.TODO(), time.Second*30)
+		ctx, cancel := context.WithTimeout(context.TODO(), time.Second*60)
 		defer cancel()
 
 		pmgr.doExpand(ctx)

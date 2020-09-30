@@ -30,12 +30,12 @@ func TestDecodeNothing(t *testing.T) {
 
 func TestParitalConfig(t *testing.T) {
 	assert := assert.New(t)
-	cfgString := ` 
+	cfgString := `
 		[API]
 		Timeout = "10s"
 		`
 	expected := DefaultFullNode()
-	expected.API.Timeout = Duration(10 * time.Second)
+	expected.API.Timeout = Duration(20 * time.Second)
 
 	{
 		cfg, err := FromReader(bytes.NewReader([]byte(cfgString)), DefaultFullNode())

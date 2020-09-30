@@ -89,7 +89,7 @@ var watchHeadCmd = &cli.Command{
 		interval := time.Duration(c.Int("interval")) * time.Second
 		name := c.String("systemd-unit")
 		apiRetries := c.Int("api-retries")
-		apiTimeout := time.Duration(c.Int("api-timeout")) * time.Second
+		apiTimeout := time.Duration(c.Int("api-timeout")) * time.Second * 2
 
 		nCh := make(chan interface{}, 1)
 		sCh := make(chan os.Signal, 1)
@@ -231,7 +231,7 @@ func waitForSyncComplete(ctx context.Context, a api.FullNode, r int, t time.Dura
 		select {
 		case <-ctx.Done():
 			return ctx.Err()
-		case <-time.After(3 * time.Second):
+		case <-time.After(6 * time.Second):
 			head, err := getHead(ctx, a, r, t)
 			if err != nil {
 				return err

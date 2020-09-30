@@ -11,7 +11,7 @@ import (
 	"github.com/filecoin-project/lotus/node/modules/helpers"
 )
 
-const discoveryConnTimeout = time.Second * 30
+const discoveryConnTimeout = time.Second * 60
 
 type discoveryHandler struct {
 	ctx  context.Context

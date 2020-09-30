@@ -109,7 +109,7 @@ func defCommon() Common {
 	return Common{
 		API: API{
 			ListenAddress: "/ip4/127.0.0.1/tcp/1234/http",
-			Timeout:       Duration(30 * time.Second),
+			Timeout:       Duration(60 * time.Second),
 		},
 		Libp2p: Libp2p{
 			ListenAddresses: []string{
@@ -121,7 +121,7 @@ func defCommon() Common {
 
 			ConnMgrLow:   150,
 			ConnMgrHigh:  180,
-			ConnMgrGrace: Duration(20 * time.Second),
+			ConnMgrGrace: Duration(40 * time.Second),
 		},
 		Pubsub: Pubsub{
 			Bootstrapper: false,

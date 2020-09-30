@@ -158,7 +158,7 @@ func (hs *Service) SayHello(ctx context.Context, pid peer.ID) error {
 		defer s.Close() //nolint:errcheck
 
 		lmsg := &LatencyMessage{}
-		_ = s.SetReadDeadline(build.Clock.Now().Add(10 * time.Second))
+		_ = s.SetReadDeadline(build.Clock.Now().Add(20 * time.Second))
 		err := cborutil.ReadCborRPC(s, lmsg)
 		if err != nil {
 			log.Infow("reading latency message", "error", err)
